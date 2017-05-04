@@ -13,24 +13,31 @@ import io.github.myersguo.uiautoservice.receiver.UIAutoServiceReceiver;
 import io.github.myersguo.uiautoservice.service.MyIntentService;
 
 public class MainActivity extends AppCompatActivity {
+    //private UIAutoServiceReceiver serviceReceiver = new UIAutoServiceReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //注册服务接收器
-        UIAutoServiceReceiver serviceReceiver = new UIAutoServiceReceiver();
-        IntentFilter statusIntentFilter = new IntentFilter(
-                Constants.SERVICE_BROADCAST_ACTION);
-        LocalBroadcastManager.getInstance(this).registerReceiver(serviceReceiver, statusIntentFilter);
-        //启动服务
-        Intent i = new Intent(this, MyIntentService.class);
-        //Intent i = new Intent(this, MyIntentService.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("key", "value");
-        i.putExtras(bundle);
-        startService(i);
+//        //注册服务接收器
+//        IntentFilter statusIntentFilter = new IntentFilter(
+//                Constants.SERVICE_BROADCAST_ACTION);
+//        registerReceiver(serviceReceiver, statusIntentFilter);
+//        //启动服务
+//        Intent i = new Intent(this, MyIntentService.class);
+//        //Intent i = new Intent(this, MyIntentService.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("key", "value");
+//        i.putExtras(bundle);
+//        startService(i);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        //unregisterReceiver(serviceReceiver);
+        super.onStop();
     }
 
 

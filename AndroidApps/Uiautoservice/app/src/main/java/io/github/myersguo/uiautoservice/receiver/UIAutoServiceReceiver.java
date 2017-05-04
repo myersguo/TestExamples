@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import io.github.myersguo.uiautoservice.constants.Constants;
-import io.github.myersguo.uiautoservice.service.MyIntentService;
-
-import static android.content.ContentValues.TAG;
 
 public class UIAutoServiceReceiver extends BroadcastReceiver {
 
