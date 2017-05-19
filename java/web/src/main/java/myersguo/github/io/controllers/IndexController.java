@@ -16,4 +16,9 @@ public class IndexController {
         model.addAttribute("message", "myersguo");
         return "index/index";
     }
+
+    @RequestMapping( value="/admin", method = RequestMethod.GET)
+    public String admin() {
+        return "redirect:/";
+    }
 }

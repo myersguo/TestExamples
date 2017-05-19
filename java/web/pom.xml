@@ -7,7 +7,7 @@
     <groupId>myersguo.me</groupId>
     <artifactId>web</artifactId>
     <version>1.0</version>
-
+    <packaging>war</packaging>
     <!--
     定义变量
     -->
@@ -72,12 +72,12 @@
         </plugins>
 
         <!--  资源文件路径 -->
-        <!--<resources>-->
-            <!--<resource>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<filtering>true</filtering>-->
-            <!--</resource>-->
-        <!--</resources>-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
     </build>
 
