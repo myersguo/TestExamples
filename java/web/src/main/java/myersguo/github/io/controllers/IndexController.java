@@ -1,11 +1,12 @@
 package myersguo.github.io.controllers;
 
+import myersguo.github.io.except.SpringException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
 
 @Controller
 public class IndexController {
@@ -20,5 +21,11 @@ public class IndexController {
     @RequestMapping( value="/admin", method = RequestMethod.GET)
     public String admin() {
         return "redirect:/";
+    }
+
+    @RequestMapping("/test")
+    @ExceptionHandler({SpringException.class})
+    public String test() {
+        throw new SpringException("permission dennyed");
     }
 }
