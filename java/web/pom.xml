@@ -8,6 +8,18 @@
     <artifactId>web</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <!--
     定义变量
     -->
@@ -38,7 +50,34 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.0.0.M1</version>
+        </dependency>
         <!-- end spring -->
+
+        <!-- jdbc driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.25</version>
+        </dependency>
+        <!-- end jdbc -->
+
+        <!-- mybatis begin -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <!-- end mybatis -->
 
         <!-- logging -->
         <dependency>
@@ -52,6 +91,21 @@
             <version>${slfj.version}</version>
         </dependency>
 
+        <!-- jdbc -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
+        <!-- end jdbc -->
+        <!--json -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.41</version>
+        </dependency>
+        <!-- end json -->
+
     </dependencies>
 
     <build>
@@ -61,7 +115,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>  
                 <version>3.1</version>  
                 <configuration>  
-                    <encoding>utf8</encoding>    
+                    <encoding>utf8</encoding>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>  
             </plugin>
 
@@ -89,5 +145,25 @@
         </resources>
 
     </build>
+
+    <!-- 定义自定义编译选项 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <dao.jdbc.url>10.236.92.57</dao.jdbc.url>
+                <dao.jdbc.port>3306</dao.jdbc.port>
+                <dao.jdbc.schema>test_mtr2</dao.jdbc.schema>
+                <dao.jdbc.user>myersguo</dao.jdbc.user>
+                <dao.jdbc.password>myersguo</dao.jdbc.password>
+            </properties>
+            <!--默认选中-->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+    </profiles>
+    <!-- end -->
 
 </project>
