@@ -49,5 +49,36 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!-- 计划任务 -->
+    <bean id="shedule" class="myersguo.github.io.timer.TestTimmer"></bean>
+
+    <bean id="sheduleBean"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="shedule" />
+        </property>
+        <property name="targetMethod">
+            <value>execute</value>
+        </property>
+    </bean>
+
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="sheduleBean" />
+        </property>
+        <property name="cronExpression">
+            <value>0 * * * * ?</value>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+            </list>
+        </property>
+    </bean>
+    <!-- end 计划任务 -->
+
 
 </beans>
